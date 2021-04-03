@@ -3,7 +3,7 @@ import { auth } from"../_actions/user_actions";
 import { useDispatch, useSelector } from 'react-redux';
 import { message } from 'antd';
 
-export default  function (SpecificComonent, option, adminRoute = null) {
+export default function (SpecificComponent, option, adminRoute = null) {
     function AuthenticationCheck(props){
 
 
@@ -14,6 +14,7 @@ export default  function (SpecificComonent, option, adminRoute = null) {
             
             dispatch(auth())
             .then(response => {
+                // console.log(response)
                 if(!response.payload.isAuth){
                     if(option){
                         message.warn("로그인이 필요합니다.")
@@ -31,10 +32,11 @@ export default  function (SpecificComonent, option, adminRoute = null) {
                 }
             })
         }, [])
+
         return (
-            <SpecificComonent {...props} user={user} />
+            <SpecificComponent {...props} user={user} />
         )
     }
     return AuthenticationCheck
 }
-// 
+

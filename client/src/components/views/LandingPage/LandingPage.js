@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from "react-router-dom";
 
 function LandingPage() {
     return (
@@ -8,4 +9,4 @@ function LandingPage() {
     )
 }
 
-export default LandingPage
+export default withRouter(LandingPage)

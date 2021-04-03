@@ -2,13 +2,16 @@ import React from 'react'
 import {Menu, message } from 'antd';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { withRouter } from "react-router-dom";
 
 function RightMenu(props) {
+    const user = useSelector(state => state.user)
 
     const LogoutHandler =()=>{
         axios.get('/api/users/logout')
         .then(response => {
             if(response.status===200){
+                console.log(response)
                 props.history.push("/login")
             }else{
                 message.warn("로그아웃에 실패하였습니다.")
@@ -16,8 +19,7 @@ function RightMenu(props) {
         })
     }
 
-    const user = useSelector(state => state.user)
-    if(user.userData && !user.userData.isAuth){
+    if (user.userData && !user.userData.isAuth) {
         return (
             <Menu style={{float:"right"}} theme="dark" mode={props.mode} >
                 <Menu.Item key="mail" style={{fontWeight:"bold"}}>
@@ -40,4 +42,4 @@ function RightMenu(props) {
     
 }
 
-export default RightMenu
+export default withRouter(RightMenu)

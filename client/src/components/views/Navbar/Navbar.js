@@ -5,7 +5,6 @@ import RightMenu from './section/RightMenu';
 import { HomeOutlined } from '@ant-design/icons';
 
 const { Header,} = Layout;
-const { SubMenu } = Menu;
 
 
 function Navbar(props) {
