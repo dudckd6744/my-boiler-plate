@@ -3,7 +3,7 @@ float: left;
 width: 120px;
 height: 31px;
 margin: 16px 39px 16px -16px;
-background: rgba(255, 255, 255, 0.3);
+background: rgb(251, 251, 251);
 }
 
 .ant-row-rtl .logo {

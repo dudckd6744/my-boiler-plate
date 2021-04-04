@@ -10,7 +10,11 @@ const { Header,} = Layout;
 function Navbar(props) {
     return (
         <Header className="header">
-        <div className="logo" />
+        <div className="logo">
+            <a href ="/">
+            <h1 style={{marginTop:"-18px", marginLeft:"34px", fontWeight:"bold", color:"darkblue"}} > Wooy</h1>
+            </a>
+        </div>
         <Menu theme="dark" mode="horizontal"  >
 
         <Menu.Item key="mail">
@@ -22,6 +26,7 @@ function Navbar(props) {
         </Menu>
         </Header>
     )
+    
 }
 
 export default Navbar
