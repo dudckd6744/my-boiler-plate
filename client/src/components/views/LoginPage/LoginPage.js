@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { withRouter } from "react-router-dom";
 import { Form, Input, Button, Checkbox, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -8,7 +8,7 @@ import { loginUser } from "../../../_actions/user_actions"
 function LoginPage(props) {
 
     const dispatch = useDispatch()
-    const initialId = localStorage.getItem("rememberMe") ? localStorage.getItem("rememberMe") : '';
+    // const initialId = localStorage.getItem("rememberMe") ? localStorage.getItem("rememberMe") : '';
 
     const rememberMeChecked = localStorage.getItem("rememberMe") ? true : false;
     const rememberId = localStorage.getItem("rememberMe") ? localStorage.getItem("rememberMe") : '';
@@ -18,8 +18,13 @@ function LoginPage(props) {
     const [rememberMe, setrememberMe] = useState(rememberMeChecked)
 
     const handleUserId =(e)=>{
-        setuserId(e.currentTarget.value)
+            {localStorage.getItem("rememberMe") ?
+            setuserId(localStorage.getItem("rememberMe")) : setuserId(e.currentTarget.value); }
+        console.log(userId)
     }
+
+        
+
     const handleUserPassword =(e)=>{
         setuserPassword(e.currentTarget.value)
     }
@@ -27,8 +32,7 @@ function LoginPage(props) {
         setrememberMe(!rememberMe)
     };
 
-    
-console.log(initialId)
+    // console.log(rememberId)
 
     const handleSubmit =(e)=>{
         e.preventDefault();
@@ -41,6 +45,7 @@ console.log(initialId)
         dispatch(loginUser(body))
         .then(response => {
             if(response.payload.loginSuccess){
+                setuserId(localStorage.getItem("rememberMe"))
                 console.log(response.payload)
                 window.localStorage.setItem('userId', response.payload.userId);
                 message.success("로그인 되었습니다.")
@@ -74,7 +79,7 @@ console.log(initialId)
             rules={[{ required: true, message: 'Please input your Username!' }]}
         >
             <Input prefix={<UserOutlined className="site-form-item-icon" />} 
-            value={userId} 
+            defaultValue={localStorage.getItem("rememberMe") ? localStorage.getItem("rememberMe") : userId} 
             onChange={handleUserId}
             placeholder="아이디" />
         </Form.Item>

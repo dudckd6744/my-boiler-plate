@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 function LandingPage() {
     return (
         <div>
-            LandingPagedddd
+            
         </div>
     )
 }

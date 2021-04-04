@@ -19,7 +19,7 @@ const { Content } = Layout;
 function App() {
   
   // console.log(user)
-  // if(user){
+  if(!localStorage.getItem("userId")){
   return (
       <Suspense fallback={(<div>Loading...</div>)}>
         <Layout>
@@ -42,8 +42,8 @@ function App() {
               >
                 <Switch>
                   <Route exact path="/" component={Auth(LandingPage, null)} />
-                  <Route exact path="/login" component={Auth(LoginPage, false)} /> 
-                  <Route exact path="/register" component={Auth(RegisterPage,false)} /> 
+                  {/* <Route exact path="/login" component={Auth(LoginPage, false)} /> 
+                  <Route exact path="/register" component={Auth(RegisterPage,false)} />  */}
                 </Switch>         
               </Content>
           </Layout>
@@ -51,24 +51,24 @@ function App() {
       </Layout>          
       </Suspense>
     )
-//   }
-//   else{
-//     if(user.userData && !user.userData.isAuth){
-//     return (
-//       <Suspense fallback={(<div>Loading...</div>)}>
-//         <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
-//           <Switch>
-//             {/* <Route exact path="/" component={Auth(LandingPage, null)} /> */}
-//             <Route exact path="/login" component={Auth(LoginPage, false)} />
-//             <Route exact path="/register" component={Auth(RegisterPage, false)} />
-//           </Switch>
-//         </div>
-//       </Suspense>
-//     );
-//     }
-// }
+  }
+  else{
+    
+    return (
+      <Suspense fallback={(<div>Loading...</div>)}>
+        <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
+          <Switch>
+            {/* <Route exact path="/" component={Auth(LandingPage, null)} /> */}
+            <Route exact path="/login" component={Auth(LoginPage, false)} />
+            <Route exact path="/register" component={Auth(RegisterPage, false)} />
+          </Switch>
+        </div>
+      </Suspense>
+    );
+    
+}
 }
   
   
 
-export default App;
+export default withRouter(App);

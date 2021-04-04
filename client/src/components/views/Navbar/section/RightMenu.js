@@ -12,7 +12,11 @@ function RightMenu(props) {
         .then(response => {
             if(response.status===200){
                 console.log(response)
-                props.history.push("/login")
+                localStorage.removeItem("userId")
+                setTimeout(() => {
+                    props.history.push("/login")
+
+                }, 1000);
             }else{
                 message.warn("로그아웃에 실패하였습니다.")
             }
