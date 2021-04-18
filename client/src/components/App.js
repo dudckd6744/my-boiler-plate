@@ -20,7 +20,7 @@ const { Content } = Layout;
 function App() {
   console.log(window.location.href)
   // console.log(user)
-  if(window.location.href === 'http://localhost:3000/login'|| window.location.href=== 'http://localhost:3000/register'){
+  if(window.location.href === 'http://52.78.213.21:3000/login'|| window.location.href=== 'http://52.78.213.21:3000/register'){
     return (
       <Suspense fallback={(<div>Loading...</div>)}>
         <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
